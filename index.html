@@ -64,8 +64,6 @@
   .legend{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
   .leg-item{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--muted)}
   .leg-dot{width:8px;height:8px;border-radius:2px;flex-shrink:0}
-  .footer{border-top:1px solid var(--border);padding:16px 28px;display:flex;justify-content:space-between;align-items:center;font-size:10px;color:var(--muted);margin-top:8px;background:var(--bg3)}
-  .footer strong{color:var(--accent-dark)}
   #tip{position:fixed;background:var(--accent-dark);color:#FAF7F2;font-size:11px;padding:8px 12px;border-radius:8px;border:1px solid var(--accent);pointer-events:none;display:none;z-index:9999;white-space:pre;line-height:1.7;box-shadow:0 8px 24px rgba(61,43,31,.2)}
   @media(max-width:900px){.kpi-grid{grid-template-columns:repeat(2,1fr)}.grid-2,.grid-3{grid-template-columns:1fr}}
   @media(max-width:500px){.kpi-grid{grid-template-columns:1fr}.container{padding:16px}}
@@ -84,8 +82,8 @@
   </div>
   <div class="header-meta">
     <span class="badge badge-green">&#9679; Dados Atualizados</span>
-    <span class="period">Jan/26 — Ago/26</span>
-    <span class="badge badge-beige">8 meses</span>
+    <span class="period">Jan/26 — Set/26</span>
+    <span class="badge badge-beige">9 meses</span>
   </div>
 </header>
 
@@ -93,46 +91,46 @@
 
   <div class="kpi-grid">
     <div class="kpi">
-      <div class="kpi-label">Faturamento Agosto/26</div>
-      <div class="kpi-value">R$ 2,50M</div>
-      <div class="kpi-delta up">&#9650; +8,8% vs Julho/26</div>
+      <div class="kpi-label">Faturamento Setembro/26</div>
+      <div class="kpi-value">R$ 2,53M</div>
+      <div class="kpi-delta up">&#9650; +1,0% vs Agosto/26</div>
       <div class="kpi-icon">💰</div>
     </div>
     <div class="kpi">
-      <div class="kpi-label">Melhor Grupo · Julho/26</div>
+      <div class="kpi-label">Melhor Grupo · Setembro/26</div>
       <div class="kpi-value sm">Risotos</div>
-      <div class="kpi-delta up">&#9650; R$ 440k — 19% do total</div>
+      <div class="kpi-delta up">&#9650; R$ 487k — 19% do total</div>
       <div class="kpi-icon">🏆</div>
     </div>
     <div class="kpi">
-      <div class="kpi-label">Top Produto · Agosto/26</div>
+      <div class="kpi-label">Top Produto · Setembro/26</div>
       <div class="kpi-value sm">Filet Fettuccine</div>
-      <div class="kpi-delta up">&#9650; R$ 105,9k — 1º lugar</div>
+      <div class="kpi-delta up">&#9650; R$ 122,8k — 1º lugar</div>
       <div class="kpi-icon">🍝</div>
     </div>
     <div class="kpi">
       <div class="kpi-label">Acumulado 2026</div>
-      <div class="kpi-value">R$ 19,1M</div>
-      <div class="kpi-delta up">&#9650; Jan–Ago/26</div>
+      <div class="kpi-value">R$ 21,6M</div>
+      <div class="kpi-delta up">&#9650; Jan–Set/26</div>
       <div class="kpi-icon">📈</div>
     </div>
   </div>
 
   <div class="grid-2">
     <div class="card">
-      <div class="card-title">Faturamento Mensal por Grupo <span>Jan – Ago/26</span></div>
+      <div class="card-title">Faturamento Mensal por Grupo <span>Jan – Set/26</span></div>
       <div class="chart-wrap" style="height:240px"><canvas id="chartEvolucao"></canvas></div>
       <div class="legend" id="legendEvolucao"></div>
     </div>
     <div class="card">
-      <div class="card-title">Top 10 Produtos <span>Agosto/26</span></div>
+      <div class="card-title">Top 10 Produtos <span>Setembro/26</span></div>
       <div id="top10"></div>
     </div>
   </div>
 
   <div class="grid-3">
     <div class="card">
-      <div class="card-title">Share por Grupo <span>Agosto/26</span></div>
+      <div class="card-title">Share por Grupo <span>Setembro/26</span></div>
       <div style="display:flex;gap:12px;align-items:center">
         <div class="chart-wrap" style="height:210px;width:180px;flex-shrink:0"><canvas id="chartGrupos"></canvas></div>
         <div id="legendGrupos" style="flex:1;display:flex;flex-direction:column;gap:5px"></div>
@@ -143,54 +141,48 @@
       <div class="chart-wrap" style="height:210px"><canvas id="chartTotal"></canvas></div>
     </div>
     <div class="card">
-      <div class="card-title">Variação MoM por Grupo <span>Ago vs Jul</span></div>
+      <div class="card-title">Variação MoM por Grupo <span>Set vs Ago</span></div>
       <div id="momBars" style="overflow-y:auto;max-height:230px;padding-right:4px"></div>
     </div>
   </div>
 
 </div>
 
-<footer class="footer">
-  <div>Gerado por <strong>Claude AI</strong> · Dados: modelo semântico CUCINA MIA 2026</div>
-  <div>Jan/2026 – Jul/2026 · 13 grupos · 8 meses</div>
-</footer>
-
 <script>
-const meses = ['Jan/26','Fev/26','Mar/26','Abr/26','Mai/26','Jun/26','Jul/26','Ago/26'];
+const meses = ['Jan/26','Fev/26','Mar/26','Abr/26','Mai/26','Jun/26','Jul/26','Ago/26','Set/26'];
 
-// Jan/26  Fev/26  Mar/26  Abr/26  Mai/26  Jun/26  Jul/26  Ago/26
+// Jan    Fev     Mar     Abr     Mai     Jun     Jul     Ago     Set
 const grupos = {
-  'Risotos':       [383715, 357434, 432324, 442443, 520728, 362933, 439953, 473881],
-  'Piatti':        [330040, 270081, 340995, 333638, 397302, 268936, 240309, 256440],
-  'Esp. Claude':   [219377, 200982, 247150, 230852, 277307, 175927, 187578, 196761],
-  'Adega':         [208018, 185005, 265079, 223753, 255915, 200286, 199948, 209478],
-  'Para Beliscar': [165479, 154259, 223077, 181811, 207214, 151591, 155199, 185040],
-  'Executivo':     [186707, 151495, 152979, 164420, 156901, 136079, 212815, 167099],
-  'Antipasti':     [123478, 105308, 139809, 134192, 144198, 102432, 122276, 146978],
-  'Cervejas':      [112409,  90830, 136809,  99096, 115822,  71795,  88839, 117919],
-  'Bebidas':       [ 66803,  62595,  83877, 113316,  81913,  87818,  64444,  70849],
-  'Drinks':        [ 96000,  87695, 116825,  93545, 123738,  72661,  95765, 111840],
-  'Eventos':       [ 25619,  38584,  57984, 147756,  46208, 102432,  11541,  63008],
-  'Dolce':         [ 41507,  36908,  42305,  44895,  49094,  36555,  38818,  40088],
-  'Cafe':          [  8255,   8798,  11679,   9931,  11014,   8388,   9837,   9360],
+  'Risotos':       [383715, 357434, 432324, 442443, 520728, 362933, 439953, 473881, 486901],
+  'Piatti':        [330040, 270081, 340995, 333638, 397302, 268936, 240309, 256440, 252221],
+  'Esp. Claude':   [219377, 200982, 247150, 230852, 277307, 175927, 187578, 196761, 190747],
+  'Adega':         [208018, 185005, 265079, 223753, 255915, 200286, 199948, 209478, 200117],
+  'Para Beliscar': [165479, 154259, 223077, 181811, 207214, 151591, 155199, 185040, 192553],
+  'Executivo':     [186707, 151495, 152979, 164420, 156901, 136079, 212815, 167099, 162717],
+  'Antipasti':     [123478, 105308, 139809, 134192, 144198, 102432, 122276, 146978, 137156],
+  'Cervejas':      [112409,  90830, 136809,  99096, 115822,  71795,  88839, 117919, 123772],
+  'Bebidas':       [ 66803,  62595,  83877, 113316,  81913,  87818,  64444,  70849, 107571],
+  'Drinks':        [ 96000,  87695, 116825,  93545, 123738,  72661,  95765, 111840, 116506],
+  'Eventos':       [ 25619,  38584,  57984, 147756,  46208, 102432,  11541,  63008,  81168],
+  'Dolce':         [ 41507,  36908,  42305,  44895,  49094,  36555,  38818,  40088,  40189],
+  'Cafe':          [  8255,   8798,  11679,   9931,  11014,   8388,   9837,   9360,   9153],
 };
 
-// Faturamentos brutos reais
-const fatBruto = [2270644, 2021571, 2593367, 2528653, 2773233, 2137994, 2297776, 2500663];
+const fatBruto = [2270644, 2021571, 2593367, 2528653, 2773233, 2137994, 2297776, 2500663, 2525648];
 
 const cores = ['#6B8F6B','#A8C5A0','#4A6B4A','#C8A882','#8B6B4A','#D4B896','#7A9E7A','#B8906A','#5A7A5A','#C4A070','#9AB89A','#A07850','#3D6B3D'];
 
-const top10Jun = [
-  {n:'Filet Fettuccine Alfredo Gratinado', v:105909},
-  {n:'Filet au Poivre',                    v: 83589},
-  {n:'Filet a Parmegiana',                 v: 61446},
-  {n:'Lasanha da Minha Avo Anna',          v: 55762},
-  {n:'Chopp Brahma Caneca',                v: 54740},
-  {n:'Risotto de Camarao Especial',        v: 53127},
-  {n:'Filet Gnocchi Trufado',              v: 47084},
-  {n:'Peixe com Banana Esp. CT',          v: 44505},
-  {n:'Prime Rib',                          v: 41220},
-  {n:'Chopp Brahma Tulipa',               v: 41202},
+const top10Set = [
+  {n:'Filet Fettuccine Alfredo Gratinado', v:122808},
+  {n:'Filet au Poivre',                    v: 85011},
+  {n:'Filet a Parmegiana',                 v: 67718},
+  {n:'Chopp Brahma Caneca',                v: 61138},
+  {n:'Lasanha da Minha Avo Anna',          v: 59192},
+  {n:'Risotto de Camarao Especial',        v: 51060},
+  {n:'Filet Gnocchi Trufado',              v: 46311},
+  {n:'Chopp Brahma Tulipa',                v: 43186},
+  {n:'Menu 480',                           v: 41497},
+  {n:'Aperol Spritz',                      v: 39195},
 ];
 
 const gNomes = Object.keys(grupos);
@@ -210,16 +202,16 @@ new Chart(document.getElementById('chartEvolucao'),{
 const legEl = document.getElementById('legendEvolucao');
 gNomes.forEach((g,i)=>{legEl.innerHTML+=`<span class="leg-item"><span class="leg-dot" style="background:${cores[i]}"></span>${g}</span>`;});
 
-// Top 10
-const maxVal=top10Jun[0].v;
+// Top 10 Setembro
+const maxVal=top10Set[0].v;
 const t10el=document.getElementById('top10');
-top10Jun.forEach((p,i)=>{
+top10Set.forEach((p,i)=>{
   const pct=(p.v/maxVal*100).toFixed(0);
   t10el.innerHTML+=`<div class="top10-row"><span class="top10-rank">${i+1}</span><div style="flex:1;overflow:hidden"><div style="display:flex;justify-content:space-between;align-items:center"><span class="top10-name">${p.n}</span><span class="top10-val">R$${(p.v/1000).toFixed(1)}k</span></div><div class="top10-bar"><div class="top10-bar-fill" style="width:${pct}%"></div></div></div></div>`;
 });
 
-// Rosca Agosto
-const roscaData=gNomes.map(g=>grupos[g][7]);
+// Rosca Setembro (índice 8)
+const roscaData=gNomes.map(g=>grupos[g][8]);
 const roscaTotal=roscaData.reduce((a,b)=>a+b,0);
 new Chart(document.getElementById('chartGrupos'),{
   type:'doughnut',
@@ -228,29 +220,27 @@ new Chart(document.getElementById('chartGrupos'),{
 });
 const legGrupos=document.getElementById('legendGrupos');
 gNomes.forEach((g,i)=>{
-  const val=grupos[g][7],pct=(val/roscaTotal*100).toFixed(1);
+  const val=grupos[g][8],pct=(val/roscaTotal*100).toFixed(1);
   legGrupos.innerHTML+=`<div style="display:flex;align-items:center;gap:6px"><span style="width:8px;height:8px;border-radius:2px;background:${cores[i]};flex-shrink:0"></span><span style="font-size:10px;color:var(--muted);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${g}</span><span style="font-size:10px;font-family:var(--font-mono);color:var(--accent-dark);font-weight:600">${pct}%</span></div>`;
 });
 
-// Linha faturamento bruto real
+// Linha faturamento bruto
 new Chart(document.getElementById('chartTotal'),{
   type:'line',
   data:{labels:meses,datasets:[{label:'Fat.Bruto',data:fatBruto,borderColor:'#4A6B4A',backgroundColor:'rgba(107,143,107,.1)',borderWidth:2.5,fill:true,tension:0.4,pointBackgroundColor:'#6B8F6B',pointBorderColor:'#FAF7F2',pointBorderWidth:2,pointRadius:5,pointHoverRadius:7}]},
   options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{...tt,callbacks:{label:ctx=>` R$${(ctx.raw/1000000).toFixed(2)}M`}}},scales:{x:{grid:{display:false},ticks:{font:{size:11}}},y:{grid:{color:'#E8DFD0'},ticks:{font:{size:10},callback:v=>'R$'+(v/1000000).toFixed(1)+'M'}}}}
 });
 
-// MoM Ago vs Jul — índice 6=Jul, índice 7=Ago
+// MoM Set vs Ago — índice 7=Ago, índice 8=Set
 const momData=gNomes.map(g=>{
-  const jun=grupos[g][6], jul=grupos[g][7];
-  return{g, pct:((jul-jun)/jun*100), mai:jun, jun:jul};
+  const ago=grupos[g][7], set=grupos[g][8];
+  return{g, pct:((set-ago)/ago*100), ago, set};
 }).sort((a,b)=>b.pct-a.pct);
 const momEl=document.getElementById('momBars');
-momEl.style.overflowY='auto';
-momEl.style.maxHeight='none';
 momData.forEach(d=>{
   const v=d.pct, cor=v>=0?'#4A6B4A':'#B85C5C', bw=Math.min(Math.abs(v)*0.6,100), sign=v>0?'+':'';
   const fmtK=n=>'R$'+(n/1000).toFixed(1)+'k';
-  momEl.innerHTML+=`<div class="mom-row"><div class="mom-header"><span class="mom-label">${d.g}</span><div class="mom-vals"><span class="mom-mar">${fmtK(d.mai)}</span><span class="mom-arrow">→</span><span class="mom-abr">${fmtK(d.jun)}</span><span class="mom-pct" style="color:${cor}">${sign}${v.toFixed(1)}%</span></div></div><div class="mom-track"><div class="mom-fill" style="width:${bw}%;background:${cor}"></div></div></div>`;
+  momEl.innerHTML+=`<div class="mom-row"><div class="mom-header"><span class="mom-label">${d.g}</span><div class="mom-vals"><span class="mom-mar">${fmtK(d.ago)}</span><span class="mom-arrow">→</span><span class="mom-abr">${fmtK(d.set)}</span><span class="mom-pct" style="color:${cor}">${sign}${v.toFixed(1)}%</span></div></div><div class="mom-track"><div class="mom-fill" style="width:${bw}%;background:${cor}"></div></div></div>`;
 });
 </script>
 </body>
